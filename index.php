@@ -35,3 +35,26 @@
         
     </body>
 </html>
+
+
+
+
+<!--
+* barre de navigation entre index et recap
+* afficher le nombre total d'article en session (count)
+* afficher message de traitement.php sur index en fonction d'erreur ou de succès
+* 3 fonctionnalités dans recap.php avec SWITCH
+    - supprimer un produit au choix
+    - supprimer tous les produits d'un coup
+    - modifier quantité produits + message notification
+
+
+
+
+
+
+
+
+
+
+
