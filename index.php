@@ -1,3 +1,7 @@
+<?php
+    session_start(); // récupération de la session pour consulter le tableau de session
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,9 +11,12 @@
         <title>Ajout produit</title>
     </head>
     <body>
-        
+        <nav>
+            <a href = "index.php">INDEX</a>
+            <a href = "recap.php">RECAP</a>
+        </nav>
         <h1>Ajouter un produit</h1>
-        <form action="traitement.php" method="post"> <!-- cible le fichier traitement.php pour soumettre le formulaire en utilisant la méthode POST -->
+        <form action="traitement.php?action=add" method="post"> <!-- cible le fichier traitement.php pour soumettre le formulaire en utilisant la méthode POST -->
             <p>
                 <label>
                     Nom du produit :
@@ -31,24 +38,26 @@
             <p>
                 <input type="submit" name="submit" value="Ajouter le produit"> <!-- bouton pour soumettre le formulaire -->
             </p>
-        </form>
+        </form>     
+
+        <p>
+            <!-- message de confirmation de l'enregistrement du produit -->
+            <?php echo $_SESSION['enregistrement'];
+             ?> 
+        </p>
         
     </body>
 </html>
 
 
 
-
 <!--
-* barre de navigation entre index et recap
-* afficher le nombre total d'article en session (count)
-* afficher message de traitement.php sur index en fonction d'erreur ou de succès
+
 * 3 fonctionnalités dans recap.php avec SWITCH
     - supprimer un produit au choix
     - supprimer tous les produits d'un coup
     - modifier quantité produits + message notification
-
-
+-->
 
 
 
