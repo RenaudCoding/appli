@@ -4,13 +4,14 @@
 
 // vérification de la clé 'submit' dans le tableau $_POST pour limiter l'accès à 'traitement.php'
 // le bouton de soumission du formulaire dispose de la clé en attribut 'name=' donc pas d'accès à 'traitement.php' autrement qu'avec le bouton du formulaire 
-                 
 
    if(isset($_GET['action'])){
    
+
+        // action à effectuer en fonction de ce qui est demander
         switch($_GET['action']){
             case "add":
-                if(isset($_POST['submit'])){ 
+                if(isset($_POST['submit'])){ // soumission du formulaire 
                                    
                     // filtrage des données entrées dans le fomulaire pour s'assurer qu'elles correspondent à ce qui est attendu (eviter injection de code)
                     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // chaine de caractère sans caractères spéciaux
@@ -29,8 +30,7 @@
 
                         $_SESSION['products'][] = $product; // enregistrement du produit '$product' dans le tableau $_SESSION avec la clé 'products'
                         $_SESSION['enregistrement'] = "Le produit à été enregistré avec succès !";
-                    } else
-                    // $enregistrement = ;
+                    } else //si le produit n'est pas enregistré
                     $_SESSION['enregistrement'] = "Le produit n'a pas pu être enregistré !";
                 }                 
                 break;
@@ -38,14 +38,14 @@
             case "delete": // vider le panier
                 unset($_SESSION["products"]);
                 break;
-            case "clear":
+            case "clear": // supprimer un produit
                 unset($_SESSION["products"][$_GET['id']]);
                 break;
-            case "up-qtt":
+            case "up-qtt": // augmenter la quantité d'un produit
                 $_SESSION["products"][$_GET["id"]]["qtt"]++;
                 $_SESSION["products"][$_GET["id"]]["total"] = $_SESSION["products"][$_GET["id"]]["qtt"]*$_SESSION["products"][$_GET["id"]]["price"];
                 break;
-            case "down-qtt":
+            case "down-qtt": // diminuer la quantité d'un produit
                 $_SESSION["products"][$_GET["id"]]["qtt"]--;
                 $_SESSION["products"][$_GET["id"]]["total"] = $_SESSION["products"][$_GET["id"]]["qtt"]*$_SESSION["products"][$_GET["id"]]["price"];
                 break;

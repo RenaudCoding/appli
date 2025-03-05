@@ -10,16 +10,16 @@
     <title>Récapitulatif des produits</title>
 </head>
 <body>
-    <nav>
+    <nav> <!-- barre de navigation -->
         <a href = "index.php">INDEX</a>
         <a href = "recap.php">RECAP</a>
     </nav>
     <?php 
-        if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
-            echo "<p>Aucun produit en session...</p>";
+        if(!isset($_SESSION['products']) || empty($_SESSION['products'])){ // verification de l'existance du tableau 'produit' dans la session 
+            echo "<p>Aucun produit en session...</p>"; // si tableau 'produit' inexistant
         }
-        else{
-            echo "<table>",
+        else{ // tableau 'produit existant
+            echo "<table>", // entête du tableau
                     "<thead>",
                         "<tr>",
                             "<th>#</th>",
@@ -32,31 +32,31 @@
                     "<tbody>";
             $totalGeneral = 0;
             $totalArticles = 0;
-            foreach($_SESSION['products'] as $index => $product){
+            foreach($_SESSION['products'] as $index => $product){ // remplissage du tableau
                 echo "<tr>",
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
-                    "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
+                    "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>", // prix unitaire du produit
                     "<td>".$product['qtt']."</td>",                                    
-                    "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
+                    "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>", // prix total du produit commander
                     "<td>"
                         ?>
-                        <a href="traitement.php?action=clear&id=<?= $index?>">suprimer</a>
-                        <a href='traitement.php?action=down-qtt&id=<?= $index?>'>-</a>
-                        <a href="traitement.php?action=up-qtt&id=<?= $index?>">+</a>
+                        <a href="traitement.php?action=clear&id=<?= $index?>">supprimer</a> <!-- lien pour supprimer un produit (URL) -->
+                        <a href='traitement.php?action=down-qtt&id=<?= $index?>'>-</a> <!-- lien pour réduire la quantité d'un produit (URL) -->
+                        <a href="traitement.php?action=up-qtt&id=<?= $index?>">+</a> <!-- lien pour augmenter la quantité d'un produit (URL) -->
                         <?php
                     "</tr>";
-                $totalGeneral+= $product['total'];
-                $totalArticles += $product['qtt'];
+                $totalGeneral+= $product['total']; // prix total du panier
+                $totalArticles += $product['qtt']; // nombre total d'article dans le panier
                 
                 
             }
             echo "<tr>",   
                 "<td colspan=4>Total général : </td>",
-                "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp,")."&nbsp,€</strong></td>",
+                "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp,")."&nbsp,€</strong></td>", // prix total du panier
                 "</tr>",
                 "<tr>",
-                "<td colspan=4> Nombre total d'articles : </td>",
+                "<td colspan=4> Nombre total d'articles : </td>", // nombre total d'article
                 "<td><strong>".number_format($totalArticles, 0, ",", "&nbsp,")."</strong></td>",
                 "</tr>",
             "</tbody>",
@@ -66,7 +66,7 @@
         }
     ?>
 
-    <a href="traitement.php?action=delete">Vider le panier</a>
+    <a href="traitement.php?action=delete">Vider le panier</a> <!-- lien pour vider le panier -->
 
 
 </body>

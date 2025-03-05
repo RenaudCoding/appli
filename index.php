@@ -11,7 +11,7 @@
         <title>Ajout produit</title>
     </head>
     <body>
-        <nav>
+        <nav> <!-- barre de navigation -->
             <a href = "index.php">INDEX</a>
             <a href = "recap.php">RECAP</a>
         </nav>
@@ -50,14 +50,6 @@
 </html>
 
 
-
-<!--
-
-* 3 fonctionnalités dans recap.php avec SWITCH
-    - supprimer un produit au choix
-    - supprimer tous les produits d'un coup
-    - modifier quantité produits + message notification
--->
 
 
 
