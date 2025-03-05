@@ -37,15 +37,13 @@
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                    "<td>".$product['qtt'];
-                        ?>
-                        <a href='traitement.php?action=down-qtt&id=<?= $index?>'>-</a>
-                        <a href="traitement.php?action=up-qtt&id=<?= $index?>">+</a>
-                        <?php "</td>",
+                    "<td>".$product['qtt']."</td>",                                    
                     "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                     "<td>"
                         ?>
-                        <a href="traitement.php?action=clear&id=<?= $index?>">supprimer</a>
+                        <a href="traitement.php?action=clear&id=<?= $index?>">suprimer</a>
+                        <a href='traitement.php?action=down-qtt&id=<?= $index?>'>-</a>
+                        <a href="traitement.php?action=up-qtt&id=<?= $index?>">+</a>
                         <?php
                     "</tr>";
                 $totalGeneral+= $product['total'];
@@ -64,15 +62,11 @@
             "</tbody>",
             "</table>";
             ;      
-
            
-            var_dump($_SESSION);
         }
     ?>
 
-    <form action="traitement.php?action=delete" method="post">
-        <input type="submit" name="submit" value="Vider le panier">
-    </form>
+    <a href="traitement.php?action=delete">Vider le panier</a>
 
 
 </body>

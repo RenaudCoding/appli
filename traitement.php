@@ -35,14 +35,20 @@
                 }                 
                 break;
 
-            case "delete":
+            case "delete": // vider le panier
                 unset($_SESSION["products"]);
+                break;
             case "clear":
                 unset($_SESSION["products"][$_GET['id']]);
+                break;
             case "up-qtt":
-                $_SESSION["products"][$_GET['qtt']]++;
+                $_SESSION["products"][$_GET["id"]]["qtt"]++;
+                $_SESSION["products"][$_GET["id"]]["total"] = $_SESSION["products"][$_GET["id"]]["qtt"]*$_SESSION["products"][$_GET["id"]]["price"];
+                break;
             case "down-qtt":
-                $_SESSION["products"][$_GET['qtt']]--;
+                $_SESSION["products"][$_GET["id"]]["qtt"]--;
+                $_SESSION["products"][$_GET["id"]]["total"] = $_SESSION["products"][$_GET["id"]]["qtt"]*$_SESSION["products"][$_GET["id"]]["price"];
+                break;
         }
    }
 
